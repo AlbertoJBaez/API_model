@@ -60,6 +60,31 @@ def ingest_data():
         return 'Invalid parameter values. The values of TV, radio, newspaper, and sales must be numbers.'
     except Exception as e:
         return f'An error occurred: {str(e)}'
+    
+@app.route('/v2/ingest_data_json', methods=['POST'])
+def ingest_data_json():
+    data = request.get_json()
+    
+    # Aquí puedes realizar las operaciones necesarias para almacenar los datos
+    # en tu base de datos o en cualquier otro lugar
+    
+    # Por ejemplo, si deseas almacenar los datos en una base de datos SQLite:
+    connection = sqlite3.connect('data/advertising.db')
+    cursor = connection.cursor()
+    for record in data:
+        # Supongamos que cada registro tiene tres campos: 'tv', 'radio', 'newspaper'
+        tv = record.get('tv')
+        radio = record.get('radio')
+        newspaper = record.get('newspaper')
+        sales = record.get('sales')
+        # Realiza la inserción del registro en tu tabla de base de datos
+        cursor.execute("INSERT INTO Advertising (TV, radio, newpaper, sales) VALUES (?, ?,?, ?)", (tv, radio, newspaper, sales))
+    connection.commit()
+    connection.close()
+
+    # Retorna una respuesta indicando que los datos han sido ingestados correctamente
+    return 'Data ingested successfully'
+
 
 @app.route('/v2/retrain', methods=['PUT'])
 def retrain_model():
