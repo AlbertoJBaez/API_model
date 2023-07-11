@@ -1,6 +1,25 @@
-# API_model
-En este ejercicio se ha desarrollado una API utilizando Flask para consumir un modelo de machine learning que realiza predicciones de ventas a partir de los gastos en publicidad en televisión, radio y periódicos. La API permite obtener predicciones, almacenar nuevos registros en la base de datos y reentrenar el modelo con nuevos datos.
+# Advertising Model API
 
+Este proyecto es una API que proporciona funcionalidades relacionadas con un modelo de publicidad. Permite realizar predicciones de ventas y gestionar datos de publicidad.
+
+## Funcionalidades
+
+- Predicción de ventas: La API ofrece una ruta `/v2/predict` que permite hacer predicciones de ventas en función de los gastos de publicidad en TV, radio y periódicos.
+
+- Ingesta de datos: La API proporciona rutas para ingresar datos de publicidad, ya sea a través de una solicitud POST en `/v2/ingest_data` o mediante una solicitud POST con formato JSON en `/v2/ingest_data_json`. Esto permite agregar nuevos registros a la base de datos de publicidad.
+
+- Retraining del modelo: La API tiene una ruta `/v2/retrain` que permite reentrenar el modelo de publicidad utilizando los datos almacenados en la base de datos.
+
+## Requisitos
+
+- Python 3.11 o superior
+- Flask
+- scikit-learn
+- pandas
+
+## Instalación
+
+1. Clona este repositorio en tu máquina local:
 # Endpoints de la API
 La API proporciona los siguientes endpoints:
 
@@ -13,10 +32,12 @@ PUT /v2/retrain: Permite reentrenar el modelo utilizando los registros de gastos
 Notas adicionales
 El modelo de machine learning utilizado se encuentra en el archivo model.pkl. Si deseas utilizar otro modelo, debes reemplazar ese archivo con tu propio modelo entrenado.
 
-La base de datos SQLite se encuentra en el archivo database.db. Puedes utilizar herramientas como SQLite Browser para ver y gestionar los datos almacenados en la base de datos.
+La base de datos SQLite se encuentra en el archivo database.db. Puedes utilizar herramientas como SQLite Browser para ver y gestionar los datos almacenados en la base de datos. También puedes acceder al archivo csv a partir del cual se ha creado la base de datos y el ejecutable para crearla.
 
 Asegúrate de tener los permisos adecuados para leer y escribir archivos en el directorio donde se encuentra la aplicación Flask.
 
 Si deseas realizar pruebas adicionales, puedes utilizar herramientas como Postman para enviar solicitudes HTTP a la API y verificar las respuestas.
 
 ¡Gracias por revisar este trabajo! Si tienes alguna pregunta o problema, no dudes en hacérmelo saber.
+
+Si no deseas usar el despliegue con Docker o no tienes instalado Docker, también puedes ejecutarlo en tu ordenador local con el archivo app_model_db y ejecutarlo en tu ordenador local.
